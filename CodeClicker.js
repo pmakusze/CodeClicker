@@ -19,6 +19,11 @@ if (Meteor.isClient) {
     'click input.buy': function (event)
     {
 	Meteor.call('buy', event.target.id);
+    },
+
+    'click input.reset': function()
+    {
+	Meteor.call('reset');
     }
   });
 
@@ -76,14 +81,14 @@ Meteor.methods
 	Meteor.users.update({_id: this.userId}, {$inc: {'money': 25}});
   },
 
-  buy: function(amount)
+  buy: function (amount)
   {
 	if(Meteor.user().money >= amount && amount > 0)
 	  Meteor.users.update({_id: this.userId}, {$inc: {'rate': (Math.floor(amount/500)), 'money': 		    (0-amount)}});
   },
 
-  reset: function()
+  reset: function ()
   {
-	
-  },
-})
+	Meteor.users.update({_id: this.userId}, {$set: {'money': 0, 'rate': 0}});
+  }
+});
