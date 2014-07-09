@@ -1,0 +1,34 @@
+<head>
+  <title>CodeClicker</title>
+</head>
+
+<body>
+
+  <h3> <div align="right">{{> loginButtons align="right"}}</div> </h3>
+<br>
+  {{> hello}} 
+
+</body>
+
+<template name="hello">
+
+  <h1>Code Clicker!</h1>
+<br>
+  <h2>You {{user.username}}, have ${{user.money}} and make ${{user.rate}} per second! </h2>
+<br>
+<br>
+  <input type="button" class="code btn span4" value= "Write line of code ($25)"/>
+  <div class="span6 text-center"></div>
+<br>
+<br>
+  <div class="span5 text-center"> <p><b>Store </b></p> </div>
+<br>
+<br>
+  {{#each items}}
+  <input type="button" class="buy btn span6" id="{{cost}}" value="Buy {{name}} (${{cost}})" />
+<br>
+  {{/each}}
+  <button name="reset_button" type="button">*RESET DATA*</button>
+
+
+</template>
